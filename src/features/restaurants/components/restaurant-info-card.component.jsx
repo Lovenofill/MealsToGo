@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
-import { View, Image } from "react-native";
+import { View, Image , FlatList } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
