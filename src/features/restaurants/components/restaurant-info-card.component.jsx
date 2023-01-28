@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
-import { View, Image , FlatList } from "react-native";
+import { View, Image, FlatList } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
@@ -18,7 +18,7 @@ import {
   Address,
 } from "./restaurant-info-card.styles";
 
-export const RestaurantInfoCard = ({ ...restaurant }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
