@@ -1,12 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  StatusBar,
-  FlatList,
-} from "react-native";
-import { Searchbar } from "react-native-paper";
+import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import styled from "styled-components/native";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -40,7 +33,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -61,9 +54,17 @@ export const RestaurantsScreen = () => {
           data={restaurants}
           renderItem={({ item }) => {
             return (
-              <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Restaurants1Detail", {
+                    restaurant: item,
+                  })
+                }
+              >
+                <Spacer position="bottom" size="large">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </TouchableOpacity>
             );
           }}
           keyExtractor={(item) => item.name}
