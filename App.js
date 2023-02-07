@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { RestaurantsScreen } from './src/features/restaurants/screens/restaurants.screen';
 import { ThemeProvider } from 'styled-components/native';
@@ -15,7 +16,29 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import 'react-native-gesture-handler';
 import { AppNavigator } from './src/infrastructure/navigation/app.navigator';
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+import { firebase } from "./firebaseConfig";
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      firebase.auth
+        .signInWithEmailAndPassword(
+          firebase.getAuth,
+          "LNF@hotmail.com",
+          "123456"
+        )
+        .then((user) => {
+          setIsAuthenticated(true);
+        })
+        .catch((error) => {
+          setIsAuthenticated(false);
+          console.log(error);
+        });
+    }, 2000);
+  }, []);
+
+
 
   let [OswaldLoaded] = UseOswald({
     Oswald_400Regular,
@@ -27,7 +50,7 @@ export default function App() {
   if (!OswaldLoaded || !LatoLoaded) {
     return null;
   }
-
+  if (!isAuthenticated) return null;
   return (
     <>
       <ThemeProvider theme={theme}>
