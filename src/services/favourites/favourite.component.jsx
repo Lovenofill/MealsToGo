@@ -16,7 +16,6 @@ export const Favourite = ({ restaurant }) => {
   const { favourites, addToFavourites, removeFromFavourites } =
     useContext(FavouritesContext);
   const isFavourite = favourites.find((r) => r.placeId === restaurant.placeId);
-  console.log(favourites)
   return (
     <FavouriteButton
       onPress={() =>
