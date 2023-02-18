@@ -9,6 +9,8 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
+import { SettingsNavigator } from "./settings.navigator";
+SettingsNavigator
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
@@ -46,7 +48,7 @@ export const AppNavigator = () => (
         <Tab.Navigator screenOptions={createScreenOptions} headerMode="none">
           <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
           <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen name="Settings" component={SettingsNavigator} />
         </Tab.Navigator>
       </RestaurantsContextProvider>
     </LocationContextProvider>
